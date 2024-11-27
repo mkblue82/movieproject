@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}My Watch List{% endblock %} 
+
+    {% block contents %}
+
+    {% if user.is_authenticated %}
+        <br>
+        <div style="text-align:center">
+            <h4>{{ user.username }}さんのウォッチリスト</h4>
+            {% if object_list.count == 0 %}
+                <p>{{user.username}}さんのウォッチリストの登録はありません</p>
+            {% else %}
+                <p>登録<strong>{{object_list.count}}</strong>件</p>
+            {% endif %}
+        </div>
+        <hr>
+    {% endif %}
+
+    {% include "movie_to_watch_list.html" %}
+
+    {% include "pagination.html" %}
+
+    {% endblock %}

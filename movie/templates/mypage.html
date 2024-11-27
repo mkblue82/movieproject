@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Mypage{% endblock %} 
+
+    {% block contents %}
+
+    {% if user.is_authenticated %}
+        <br>
+        <div style="text-align:center">
+            <h4>{{ user.username }}さんのマイページ</h4>
+            <a href="{% url 'movie:post' %}">投稿する</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="{% url 'movie:post_movie_to_watch' %}">観たい映画を登録</a>
+            <br><br>
+            <a href="{% url 'movie:reviewlist' %}" class="btn btn-primary my-2">レビュー投稿一覧</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="{% url 'movie:watchlist' %}" class="btn btn-primary my-2">観たい映画一覧</a>
+        </div>
+        <hr>
+    {% endif %}
+
+    {% endblock %}

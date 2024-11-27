@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row mb-2">
+      {% for record in object_list %}
+      <div class="col-12 col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <!-- カテゴリを出力 -->
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <a class="d-inline-block mb-2 text-primary-emphasis" href="{% url 'movie:movies_cat' category=record.category.id %}">
+                <strong>{{ record.category.title }}</strong>
+            </a>
+            <!-- 投稿日時を出力 -->
+            <div class="text-body-secondary">{{ record.posted_at|date:"【Y-m-d】" }}</div>
+          </div>
+            <!-- titleを出力 -->
+            <h3 class="mb-0">{{ record.title }}</h3>
+            <!-- 投稿したユーザー名を出力 -->
+            <a href="{% url 'movie:user_list' user=record.user.id %}">
+              <div class="mb-1 text-body-secondary">{{ record.user.username }}</div>
+            </a>
+            <p class="card-text mb-auto">{{record.comment|slice:':45'}}...</p>
+            <!-- 詳細ページを表示 -->
+            <a href="{% url 'movie:watchlist_detail' record.pk %}" class="icon-link gap-1 icon-link-hover">続きを読む</a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <img src="{{ record.image.url }}" width="200" height="250" alt="Thumbnail">
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  

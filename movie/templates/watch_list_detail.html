@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Watch List Detail{% endblock %} 
+
+    {% block contents %}
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 offset-md-1">
+                <img src="{{object.image.url}}" class="img-fluid" alt="Movie Image">
+            </div>
+            
+            <div class="col offset-1">
+                <h2>{{object.title}}</h2>
+                <p>{{object.comment}}</p>
+                <br>
+
+                <p>{{object.posted_at}}に投稿</p>
+                {% if request.user == object.user %}
+                <form method="POST">
+                <a href="{% url 'movie:watchlist_delete' object.pk %}" class="btn btn-primary my-2">削除する</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
